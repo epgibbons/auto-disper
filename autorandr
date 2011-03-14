@@ -119,7 +119,7 @@ current_cfg_xrandr() {
 }
 
 current_cfg_disper() {
-	$DISPER -p
+	$DISPER --export
 }
 
 current_cfg() {
@@ -148,7 +148,7 @@ load_cfg_xrandr() {
 }
 
 load_cfg_disper() {
-	$DISPER < -i < "$1"
+	$DISPER  -i < "$1"
 }
 
 load() {
@@ -221,7 +221,7 @@ if [ -n "$SAVE_PROFILE" ]; then
 	echo "Saving current configuration as profile '${SAVE_PROFILE}'"
 	mkdir -p "$PROFILES/$SAVE_PROFILE"
 	echo "$CURRENT_SETUP" > "$PROFILES/$SAVE_PROFILE/setup"
-	current_cfg > "$PROFILES/$SAVE_PROFILE/config"
+	$CURRENT_CFG_METHOD > "$PROFILES/$SAVE_PROFILE/config"
 	exit 0
 fi
 
